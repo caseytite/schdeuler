@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import InterviewerListItem from "./InterviewerListItem";
 import './InterviewerList.scss'
 
@@ -7,21 +7,15 @@ const InterviewerList = (props) => {
   const {interviewers, setInterviewer, interviewer} = props
 
 
-  const selectInterviewer = () => {
-    
-  }
-
-
-
   const interviewersArray = interviewers.map(int => {
     return (
       <InterviewerListItem
       key={int.id}
-      id={int.id}
+      // id={int.id}
       name={int.name}
       avatar={int.avatar}
-      setInterviewer={setInterviewer}
-      // selected={'doesent matter at all'}
+      selected={interviewer === int.id}
+      setInterviewer={() => setInterviewer(int.id)}
       
       />
     )
