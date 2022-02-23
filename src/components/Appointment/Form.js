@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import Appointment from ".";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
+import Appointment from ".";
 
 const Form = (props) => {
 
@@ -13,8 +13,8 @@ const Form = (props) => {
   
   const reset = (e) => {
     
-    // setStudent(() => setStudent(''), console.log('what the fuck',student));
-    setStudent(() => setStudent(''))
+  
+    setStudent(() => setStudent(''));
     setInterviewer(() => setInterviewer(''));
     console.log('click in reset');
   }
@@ -30,6 +30,7 @@ const Form = (props) => {
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
+            value={student}
             placeholder={student || 'Enter Student Name'}
             onChange={e => setStudent(e.target.value)}
            
@@ -44,7 +45,7 @@ const Form = (props) => {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button onClick={() => {reset(); cancel(); }} danger>Cancel</Button>
-          <Button onClick={onSave} confirm >Save</Button>
+          <Button onClick={onSave} confirm>Save</Button>
         </section>
       </section>
     </main>

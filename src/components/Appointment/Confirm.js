@@ -1,5 +1,4 @@
 import React from "react";
-import Appointment from ".";
 import Button from "components/Button";
 
 const Confirm = (props) => {

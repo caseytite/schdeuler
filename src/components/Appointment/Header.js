@@ -1,5 +1,4 @@
 import React from "react";
-import Appointment from ".";
 
 const Header = (props) => {
 
