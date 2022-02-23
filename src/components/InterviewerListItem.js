@@ -12,13 +12,6 @@ const InterviewerListItem = (props) => {
     'interviewers__item--selected': selected,
   }) 
 
-  // setInterviewer()
-
-  // const setInterviewerHandler = (e) => {
-  //   setInterviewer(id)
-  //   console.log('inside list item', e.target.id);
-  // }
-
   return(
     <li className={interviewerClass} onClick={setInterviewer}>
   <img
