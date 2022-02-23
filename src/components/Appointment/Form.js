@@ -12,16 +12,17 @@ const Form = (props) => {
   
   
   const reset = (e) => {
-    
-  
     setStudent(() => setStudent(''));
-    setInterviewer(() => setInterviewer(''));
+    setInterviewer(() => setInterviewer(null));
     console.log('click in reset');
   }
+
   const cancel = () => {
+    reset()
     onCancel()
     console.log('click in cancel');
   }
+
   return(
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -44,7 +45,7 @@ const Form = (props) => {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button onClick={() => {reset(); cancel(); }} danger>Cancel</Button>
+          <Button onClick={() => cancel()} danger>Cancel</Button>
           <Button onClick={onSave} confirm>Save</Button>
         </section>
       </section>
