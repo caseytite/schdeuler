@@ -54,15 +54,16 @@ export default function Application() {
 
   const dailyAppointments = getAppointmentsForDay(state, state.day,)
   
-  const GET_DAYS = axios.get('api/days')
-  const GET_APPOINTMENTS = axios.get('/api/appointments')
-  const GET_INTERVIEWERS = axios.get('/api/interviewers')
-
+  
   useEffect(() => {
-
+    
+    const GET_DAYS = axios.get('api/days')
+    const GET_APPOINTMENTS = axios.get('/api/appointments')
+    const GET_INTERVIEWERS = axios.get('/api/interviewers')
+    
     Promise.all([GET_DAYS,GET_APPOINTMENTS,GET_INTERVIEWERS])
       .then((response) => {
-
+      
         const [days, appointments,interviewers] = response
       
         setState(prev => ({
@@ -72,9 +73,10 @@ export default function Application() {
           interviewers:interviewers.data
         }))
       })
-  })
+  },[])
 
-  const setDay = day => setState({ ...state, day });
+  // const setDay = day => setState({ ...state, day });
+  const setDay = day => setState(prev => ({ ...prev, day }));
       
   const appointmentArr = dailyAppointments.map(apt => <Appointment key={apt.id} {...apt} />)
 
@@ -89,9 +91,9 @@ export default function Application() {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={state.days}
+            allDays={state.days}
             value={state.day}
-            onChange={setDay}
+            setDay={setDay}
           />
         </nav>
         <img
