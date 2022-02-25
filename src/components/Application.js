@@ -2,12 +2,12 @@ import React, {useState, useEffect} from "react";
 
 import "components/Application.scss";
 import DayList from "./DayList";
-// import 'components/Appointment'
+
 import Appointment from "./Appointment";
 import axios from "axios";
 import { getAppointmentsForDay } from "helpers/selectors";
 
-export default function Application(props) {
+export default function Application() {
 
   const [state,setState] = useState({
     day: 'Monday',
@@ -72,7 +72,7 @@ export default function Application(props) {
           interviewers:interviewers.data
         }))
       })
-  },[])
+  })
 
   const setDay = day => setState({ ...state, day });
       
@@ -103,7 +103,6 @@ export default function Application(props) {
       <section className="schedule">
         {appointmentArr}
         <Appointment key="last" time="5pm" />
-
       </section>
     </main>
   );
