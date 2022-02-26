@@ -1,31 +1,27 @@
-
-export function getAppointmentsForDay(state, day){
-
-  const appointmentsForDay = state.days.find(item => {
-    return item.name === day
-  })
-  if(!appointmentsForDay){
-    return []
+export function getAppointmentsForDay(state, day) {
+  const appointmentsForDay = state.days.find((item) => {
+    return item.name === day;
+  });
+  if (!appointmentsForDay) {
+    return [];
   }
-  return appointmentsForDay.appointments.map(day => state.appointments[day]) 
-  
+  return appointmentsForDay.appointments.map((day) => state.appointments[day]);
 }
 
-
-export function getInterview(state, apt_interview){
-
-  if(!apt_interview){
-    return null
+export function getInterview(state, apt_interview) {
+  if (!apt_interview) {
+    return null;
   }
 
-  const interviewerId = apt_interview.interviewer
-  const interviewObj = state.interviewers[interviewerId]
-  const interview = {'student':apt_interview.student, 'interviewer':interviewObj}
+  const interviewerId = apt_interview.interviewer;
+  const interviewObj = state.interviewers[interviewerId];
+  const interview = {
+    student: apt_interview.student,
+    interviewer: interviewObj,
+  };
 
-  return  interview 
-
-} 
-
+  return interview;
+}
 
 // const state = {
 //   days: [
@@ -58,7 +54,7 @@ export function getInterview(state, apt_interview){
 //     }
 //   },
 //   interviewers: {
-//     "1": {  
+//     "1": {
 //       "id": 1,
 //       "name": "Sylvia Palmer",
 //       "avatar": "https://i.imgur.com/LpaY82x.png"
@@ -71,18 +67,14 @@ export function getInterview(state, apt_interview){
 //   }
 // };
 
-export function getInterviewersForDay(state, day){
-  const interviewersArr = []
-  state.days.forEach(item => {
-   if(item.name === day){
-      interviewersArr.push(...item.interviewers)
+export function getInterviewersForDay(state, day) {
+  const interviewersArr = [];
+  state.days.forEach((item) => {
+    if (item.name === day) {
+      interviewersArr.push(...item.interviewers);
     }
-  })
-  if(!state.days) return[]
-  
-  return interviewersArr.map(int => state.interviewers[int]) 
+  });
+  if (!state.days) return [];
 
- 
+  return interviewersArr.map((int) => state.interviewers[int]);
 }
- 
- 
