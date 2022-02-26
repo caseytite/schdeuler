@@ -11,3 +11,18 @@ export function getAppointmentsForDay(state, day){
   
 }
 
+
+export function getInterview(state, apt_interview){
+
+  if(!apt_interview){
+    return null
+  }
+
+  const interviewerId = apt_interview.interviewer
+  const interviewObj = state.interviewers[interviewerId]
+  const interview = {'student':apt_interview.student, 'interviewer':interviewObj}
+
+  return  interview 
+
+} 
+

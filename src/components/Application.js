@@ -5,7 +5,7 @@ import DayList from "./DayList";
 
 import Appointment from "./Appointment";
 import axios from "axios";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 export default function Application() {
 
@@ -52,7 +52,6 @@ export default function Application() {
     ]}
   });
 
-  const dailyAppointments = getAppointmentsForDay(state, state.day,)
   
   
   useEffect(() => {
@@ -62,24 +61,36 @@ export default function Application() {
     const GET_INTERVIEWERS = axios.get('/api/interviewers')
     
     Promise.all([GET_DAYS,GET_APPOINTMENTS,GET_INTERVIEWERS])
-      .then((response) => {
+    .then((response) => {
       
-        const [days, appointments,interviewers] = response
+      const [days, appointments,interviewers] = response
       
-        setState(prev => ({
-          ...prev,
-          days: days.data,
-          appointments: appointments.data,
-          interviewers:interviewers.data
-        }))
-      })
+      setState(prev => ({
+        ...prev,
+        days: days.data,
+        appointments: appointments.data,
+        interviewers:interviewers.data
+      }))
+    })
   },[])
-
+  
   // const setDay = day => setState({ ...state, day });
   const setDay = day => setState(prev => ({ ...prev, day }));
-      
-  const appointmentArr = dailyAppointments.map(apt => <Appointment key={apt.id} {...apt} />)
 
+  const dailyAppointments = getAppointmentsForDay(state, state.day,)
+  
+  // const appointmentArr = dailyAppointments.map(apt => <Appointment key={apt.id} {...apt} />)
+  const appointmentArr = dailyAppointments.map(apt => {
+          const interview = getInterview(state,apt.interview)
+          
+    return  <Appointment 
+              key={apt.id} 
+              id={apt.id} 
+              time={apt.time}  
+              interview={interview}  
+            />
+         })
+  
   return (
     <main className="layout">
       <section className="sidebar">

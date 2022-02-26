@@ -14,13 +14,11 @@ const Form = (props) => {
   const reset = (e) => {
     setStudent(() => setStudent(''));
     setInterviewer(() => setInterviewer(null));
-    console.log('click in reset');
   }
 
   const cancel = () => {
     reset()
     onCancel()
-    console.log('click in cancel');
   }
 
   return(
