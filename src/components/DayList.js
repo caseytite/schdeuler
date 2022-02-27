@@ -1,26 +1,22 @@
-import React from "react";
-import DayListItem from "./DayListItem";
+import React from 'react';
+import DayListItem from './DayListItem';
 
 const DayList = (props) => {
+  const { value, allDays, setDay } = props;
 
-  const {value, allDays, setDay} = props
-
-  const daysList = allDays.map(day => {
+  const daysList = allDays.map((day) => {
     return (
-      <DayListItem 
+      <DayListItem
         key={day.id}
-        name={day.name} 
-        spots={day.spots} 
+        name={day.name}
+        spots={day.spots}
         daySelected={day.name === value}
-        setDay={setDay} />
-    )
-  })
+        setDay={setDay}
+      />
+    );
+  });
 
-  return (
-    <ul>
-      {daysList}
-    </ul>
-  )
-}
+  return <ul>{daysList}</ul>;
+};
 
 export default DayList;

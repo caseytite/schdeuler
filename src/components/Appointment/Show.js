@@ -1,8 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const Show = (props) => {
-
-  const {student, interviewer, onEdit, onDelete} = props
+  const { student, interviewer, onEdit, onDelete } = props;
 
   return (
     <main className="appointment__card appointment__card--show">
@@ -27,11 +26,10 @@ const Show = (props) => {
             alt="Delete"
             onClick={onDelete}
           />
+        </section>
       </section>
-  </section>
     </main>
   );
-
 };
 
 export default Show;

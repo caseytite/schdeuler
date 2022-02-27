@@ -1,40 +1,37 @@
-import React, {useState} from "react";
-import InterviewerList from "components/InterviewerList";
-import Button from "components/Button";
-
+import React, { useState } from 'react';
+import InterviewerList from 'components/InterviewerList';
+import Button from 'components/Button';
 
 const Form = (props) => {
-
-  const {interviewers, onSave, onCancel} = props;
+  const { interviewers, onSave, onCancel } = props;
 
   const [student, setStudent] = useState(props.student || '');
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  
-  
+
   const reset = (e) => {
     setStudent(() => setStudent(''));
     setInterviewer(() => setInterviewer(null));
-  }
+  };
 
   const cancel = () => {
-    reset()
-    onCancel()
-  }
+    reset();
+    onCancel();
+  };
 
-  return(
+  return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off" onSubmit={e => e.preventDefault()}>
+        <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
             value={student}
             placeholder={student || 'Enter Student Name'}
-            onChange={e => setStudent(e.target.value)}
+            onChange={(e) => setStudent(e.target.value)}
           />
         </form>
-        <InterviewerList 
+        <InterviewerList
           onChange={setInterviewer}
           interviewers={interviewers}
           value={interviewer}
@@ -42,8 +39,12 @@ const Form = (props) => {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button onClick={() => cancel()} danger>Cancel</Button>
-          <Button onClick={onSave} confirm>Save</Button>
+          <Button onClick={() => cancel()} danger>
+            Cancel
+          </Button>
+          <Button onClick={onSave} confirm>
+            Save
+          </Button>
         </section>
       </section>
     </main>
