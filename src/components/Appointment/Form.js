@@ -44,9 +44,10 @@ const Form = (props) => {
           <Button onClick={() => cancel(student,interviewer)} danger>
             Cancel
           </Button>
-          <Button onClick={() => onSave(student,interviewer)} confirm>
+          {!student || !interviewer && <Button confirm>Save</Button>}
+          { student && interviewer && <Button onClick={() => onSave(student,interviewer)} confirm>
             Save
-          </Button>
+          </Button>}
         </section>
       </section>
     </main>
