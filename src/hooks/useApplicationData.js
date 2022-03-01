@@ -2,31 +2,30 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useApplicationData = () => {
-
-  const spotsRemaining = (state, day) => {
-    const appointmentsForDay = state.days.find((item) => {
+ 
+  const spotsRemaining = (state, day, appointmentsObj) => {
+    
+    const appointmentIdForDay = state.days.findIndex((item) => {
       return item.name === day;
     });
-    const appointments = appointmentsForDay.appointments;
-    const length = appointments.filter(
-      (apt) => !state.appointments[apt].interview
-    );
-    const spotsLeft = length.length
-    const newDays = {...state.days}
-    console.log(newDays);
-  
-    for(const day in newDays){
-     console.log(day);
-     if(state.day === newDays[day].name){
-      newDays[day].spots = spotsLeft
-      
-     }
-    }  
+   
+    const daysAppointments = state.days[appointmentIdForDay].appointments
+    const availableAppointments = daysAppointments.filter(apt => !appointmentsObj[apt].interview)
+    const spots = availableAppointments.length
     
-    
+    const newDayObj = {
+      ...state.days[appointmentIdForDay],
+      spots
+    }
+
+    const newDaysArr = [ ...state.days ]
+
+     newDaysArr[appointmentIdForDay] = newDayObj
+       
+    return newDaysArr
   };
   
-
+  
   const [state, setState] = useState({
     day: 'Monday',
     days: [],
@@ -95,17 +94,20 @@ const useApplicationData = () => {
     const setDay = (day) => setState((prev) => ({ ...prev, day }));
     
     const bookInterview = (id, interview) => {
-    // spotsRemaining(state,state.days)
-    // spotsRemaining(state, state.day)
-    spotsRemaining(state, state.day)
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
+
+    
+      const appointment = {
+        ...state.appointments[id],
+        interview: { ...interview },
+      };
+      
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment,
+      };
+      console.log('apts',appointments);
+
+      const days =  spotsRemaining(state, state.day, appointments)  
     
     return axios
     .put(`/api/appointments/${id}`, { interview })
@@ -114,14 +116,16 @@ const useApplicationData = () => {
       setState({
         ...state,
         appointments,
+        days
       });
     })
       
   };
 
   const cancelInterview = (id) => {
-     spotsRemaining(state, state.day)
-   
+    // const {spots,appointmentsForDay} = spotsRemaining(state, 'Monday');
+    // const newDays = [...state.days, state.days[appointmentsForDay].spots = spots]
+    
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -130,6 +134,7 @@ const useApplicationData = () => {
       ...state.appointments,
       [id]: appointment,
     };
+     const days = spotsRemaining(state, state.day,appointments) 
 
     return axios
       .delete(`/api/appointments/${id}`)
@@ -139,6 +144,7 @@ const useApplicationData = () => {
         setState({
           ...state,
           appointments,
+          days
         });
         
       })
