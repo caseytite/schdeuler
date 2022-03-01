@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'components/Button';
 
 const Confirm = (props) => {
-  const { message, onConfirm, onCancel } = props;
+  const { message, onCancel,onDelete } = props;
 
   return (
     <main className="appointment__card appointment__card--confirm">
@@ -11,7 +11,7 @@ const Confirm = (props) => {
         <Button onClick={onCancel} danger>
           Cancel
         </Button>
-        <Button onClick={onConfirm} danger>
+        <Button onClick={onDelete} danger>
           Confirm
         </Button>
       </section>

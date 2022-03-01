@@ -15,46 +15,46 @@ export default function Application() {
   const [state, setState] = useState({
     day: 'Monday',
     days: [],
-    appointments: {
-      appointments: [
-        {
-          id: 1,
-          time: '12pm',
-        },
-        {
-          id: 2,
-          time: '1pm',
-          interview: {
-            student: 'Lydia Miller-Jones',
-            interviewer: {
-              id: 3,
-              name: 'Sylvia Palmer',
-              avatar: 'https://i.imgur.com/LpaY82x.png',
-            },
+    appointments: [
+      {
+        id: 1,
+        time: '12pm',
+      },
+      {
+        id: 2,
+        time: '1pm',
+        interview: {
+          student: 'Lydia Miller-Jones',
+          interviewer: {
+            id: 3,
+            name: 'Sylvia Palmer',
+            avatar: 'https://i.imgur.com/LpaY82x.png',
           },
         },
-        {
-          id: 3,
-          time: '2pm',
-        },
-        {
-          id: 4,
-          time: '3pm',
-          interview: {
-            student: 'Archie Andrews',
-            interviewer: {
-              id: 4,
-              name: 'Cohana Roy',
-              avatar: 'https://i.imgur.com/FK8V841.jpg',
-            },
+      },
+      {
+        id: 3,
+        time: '2pm',
+      },
+      {
+        id: 4,
+        time: '3pm',
+        interview: {
+          student: 'Archie Andrews',
+          interviewer: {
+            id: 4,
+            name: 'Cohana Roy',
+            avatar: 'https://i.imgur.com/FK8V841.jpg',
           },
         },
-        {
-          id: 5,
-          time: '4pm',
-        },
-      ],
-    },
+      },
+      {
+        id: 5,
+        time: '4pm',
+      },
+    ],
+
+    interviewers: {},
   });
 
   useEffect(() => {
@@ -83,8 +83,58 @@ export default function Application() {
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
+  // console.log('dailypts' ,dailyAppointments);
   // const appointmentArr = dailyAppointments.map(apt => <Appointment key={apt.id} {...apt} />)
+
+  const bookInterview = (id, interview) => {
+    console.log('apt id interview obj', id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    return axios
+      .put(`/api/appointments/${id}`, { interview })
+      .then(() => {
+        setState({
+          ...state,
+          appointments,
+        });
+      })
+      
+  };
+
+  const cancelInterview = (id) => {
+   
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    return axios
+      .delete(`/api/appointments/${id}`)
+      .then(() => {
+        setState({
+          ...state,
+          appointments,
+        });
+      })
+   
+  };
+
   const appointmentArr = dailyAppointments.map((apt) => {
+    if (!apt) {
+      return null;
+    }
+ 
     const interview = getInterview(state, apt.interview);
 
     return (
@@ -94,6 +144,8 @@ export default function Application() {
         time={apt.time}
         interview={interview}
         interviewersForDay={interviewersForDay}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
