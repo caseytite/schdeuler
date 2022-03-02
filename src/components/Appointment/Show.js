@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Show = (props) => {
-  const {id, student, interviewer, onEdit, onDelete, onConfirm } = props;
+  const {student, interviewer, onEdit, onConfirm } = props;
 
   return (
     <main className="appointment__card appointment__card--show">

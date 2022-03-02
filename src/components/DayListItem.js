@@ -13,16 +13,11 @@ export default function DayListItem(props) {
   const dayHandler = () => {
     setDay(name);
   };
-  const formatSpots = (spots) => {
-    let h2 =
-      spots === 1
-        ? `${spots} spot remaining`
-        : !spots
-        ? 'no spots remaining'
-        : `${spots} spots remaining`;
 
-    return <h3 className="text--light">{h2}</h3>;
-  };
+  const formatSpots=(spots)=>({
+      0:<h3 className="text--light">no spots remaining</h3>,
+      1:<h3 className="text--light">{spots} spot remaining</h3>,
+    }[spots] || <h3 className="text--light">{spots} spots remaining</h3>)
 
   return (
     <li onClick={dayHandler} className={dayClass}>

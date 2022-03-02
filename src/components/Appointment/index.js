@@ -95,7 +95,7 @@ const Appointment = (props) => {
           interviewers={interviewersForDay}
           onSave={onSave}
           onCancel={onCancel}
-          student={interview.student}
+          name={interview.student}
           interviewer={interview.interviewer.id}
         /> }
     </article>

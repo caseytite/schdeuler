@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import 'components/Application.scss';
 import DayList from './DayList';
@@ -22,9 +22,7 @@ export default function Application(props) {
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const appointmentArr = dailyAppointments.map((apt) => {
-    if (!apt) {
-      return null;
-    }
+    if (!apt) {return null;}
 
     const interview = getInterview(state, apt.interview);
 
