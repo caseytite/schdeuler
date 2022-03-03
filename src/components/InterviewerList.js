@@ -3,6 +3,8 @@ import InterviewerListItem from './InterviewerListItem';
 import './InterviewerList.scss';
 import PropTypes from 'prop-types'
 
+// builds the list of interviewers for the day
+
 const InterviewerList = (props) => {
   const { interviewers, onChange, value } = props;
 

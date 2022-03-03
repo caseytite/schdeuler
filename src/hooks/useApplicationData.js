@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useApplicationData = () => {
- 
+
+ // sets the spots remaining for each day 
   const spotsRemaining = (state, day, appointmentsObj) => {
     
     const appointmentIdForDay = state.days.findIndex((item) => {
@@ -19,9 +20,8 @@ const useApplicationData = () => {
     }
 
     const newDaysArr = [ ...state.days ]
-
      newDaysArr[appointmentIdForDay] = newDayObj
-       
+      
     return newDaysArr
   };
   
@@ -33,7 +33,7 @@ const useApplicationData = () => {
     interviewers: {},
   });
 
- 
+ // gets the data from the api to be displayed
   useEffect(() => {
     const GET_DAYS = axios.get('api/days');
     const GET_APPOINTMENTS = axios.get('/api/appointments');
@@ -53,11 +53,12 @@ const useApplicationData = () => {
       );
     }, []);
     
+    // sets a selected day as the current day
     const setDay = (day) => setState((prev) => ({ ...prev, day }));
     
+    // sends a request to book/edit an appointment to the api
     const bookInterview = (id, interview) => {
 
-    
       const appointment = {
         ...state.appointments[id],
         interview: { ...interview },
@@ -82,6 +83,7 @@ const useApplicationData = () => {
       
   };
 
+  // sends a request to delete a selected interview
   const cancelInterview = (id) => {
     
     const appointment = {
@@ -103,11 +105,9 @@ const useApplicationData = () => {
           appointments,
           days
         });
-        
+         
       })
-   
   };
-
 
   return{state, setDay, bookInterview, cancelInterview}
 }

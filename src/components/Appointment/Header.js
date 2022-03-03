@@ -1,5 +1,7 @@
 import React from 'react';
 
+//shows the appointment time and a horizontal rule
+
 const Header = (props) => {
   const { time } = props;
 

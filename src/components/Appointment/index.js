@@ -9,6 +9,7 @@ import Form from './Form';
 import Confirm from './Confirm';
 import Error from './Error';
 
+//Dynamically displays the views on the bookings page to the user based on the modes
 
 const Appointment = (props) => {
   const {
@@ -29,12 +30,11 @@ const Appointment = (props) => {
   const ERROR_SAVE = "ERROR_SAVE"
   const ERROR_DELETE = 'ERROR_DELETE'
  
+  // function that enables ability to switch modes/save history of modes
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
-  // const appointment = time ? `Appointment at ${time}` : `No Appointments`;
-
+  // sends the interview object up to be saved to the database after creation or update
   const onSave = (name, interviewer) => {
-    // save interviewer and student id
     const interview = {
       student: name,
       interviewer,
@@ -45,21 +45,23 @@ const Appointment = (props) => {
       bookInterview(id, interview).then(() => {
         transition(SHOW);
       })
-      .catch((err)=>{ 
+      .catch(()=>{ 
         transition(ERROR_SAVE, true)
       })
   };
-
+  
+  // sends the interview id up the chain to be deleted
   const onDelete = (id) => {
 
     transition(DELETE, true); 
       cancelInterview(id)
       .then(() => { transition(EMPTY)})
-      .catch((err)=>{
+      .catch(()=>{
         transition(ERROR_DELETE,true)    
       })
   };
 
+  //cancels an in progress edit, creation or deletion of appointment
   const onCancel = () => {
    back(EMPTY);
   };

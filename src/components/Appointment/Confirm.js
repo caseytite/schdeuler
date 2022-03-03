@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from 'components/Button';
 
+// Confirm component is displayed when the user asks to delete an interview
+
 const Confirm = (props) => {
   const { message, onCancel,onDelete } = props;
 

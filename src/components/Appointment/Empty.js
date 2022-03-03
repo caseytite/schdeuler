@@ -1,5 +1,7 @@
 import React from 'react';
 
+// Displays in the day slot with a button(image) to book an appointment
+
 const Empty = (props) => {
   const { onAdd } = props;
 

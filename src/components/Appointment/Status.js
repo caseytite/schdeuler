@@ -1,5 +1,7 @@
 import React from 'react';
 
+// displays the status of a booking, deletion or edit while "waiting" to hear back from the api
+
 const Status = (props) => {
   const { message } = props;
 

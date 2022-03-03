@@ -7,7 +7,7 @@ import Application from 'components/Application';
 afterEach(cleanup);
 
 describe('Appointment', () => {
-  it.only('renders without crashing', () => {
+  it('renders without crashing', () => {
     render(<Application />);
   });
 });

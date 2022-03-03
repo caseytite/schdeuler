@@ -1,6 +1,8 @@
 import React from 'react';
 import DayListItem from './DayListItem';
 
+// displays the weeks of the day and associated information
+
 const DayList = (props) => {
   const { value, allDays, setDay } = props;
 

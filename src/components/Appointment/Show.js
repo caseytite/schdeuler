@@ -1,5 +1,8 @@
 import React from 'react';
 
+//Displays an appointment that is booked with the student and interviewer name
+//also buttons to edit and delete interview
+
 const Show = (props) => {
   const {student, interviewer, onEdit, onConfirm } = props;
 

@@ -1,5 +1,7 @@
 import React from 'react';
 
+// Displays an error message if an interview cannot be deleted or saved
+
 const Error = (props) => {
   const { message, onClose } = props;
 
