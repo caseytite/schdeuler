@@ -1,5 +1,7 @@
 # Interview Scheduler
 
+A single page app that allows students to book, edit and delete interviews in real time.
+
 ## Setup
 
 Install dependencies with `npm install`.
