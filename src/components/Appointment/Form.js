@@ -33,10 +33,10 @@ const Form = (props) => {
     // this makes form test on line 47 fails but it needs to be here or else
     // the form can be submitted with no interviewer
     // mentors could not help me with it
-    // if(!interviewer){
-    //   setError("Choose an interviewer")
-    //   return
-    // }
+    if(!interviewer){
+      setError("Choose an interviewer")
+      return
+    }
 
     // sends the student name entered and interviewer selected up the chain to be saved
     setError(null)
