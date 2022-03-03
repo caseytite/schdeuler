@@ -13,17 +13,17 @@ export default function useVisualMode(initial) {
     }
     setHistory((prev) => [...prev, newMode]);
     return setMode(newMode);
+
   }
 
   //reverts to previous mode
   function back() {
-    
     if (history.length < 2) {
       return setMode(...history);
     }
     history.pop();
     return setMode(history[history.length - 1]);
   }
-
+ 
   return { mode, transition, back };
 }
