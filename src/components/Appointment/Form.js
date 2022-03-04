@@ -30,9 +30,7 @@ const Form = (props) => {
       return
     }
 
-    // this makes form test on line 47 fails but it needs to be here or else
-    // the form can be submitted with no interviewer
-    // mentors could not help me with it
+    //DISREGUARD MY COMMENT WHEN SUBMITTING I GOT THE TEST TO PASS
     if(!interviewer){
       setError("Choose an interviewer")
       return
