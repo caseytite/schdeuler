@@ -8,14 +8,14 @@ import PropTypes from 'prop-types'
 const InterviewerList = (props) => {
   const { interviewers, onChange, value } = props;
 
-  const interviewersArray = interviewers.map((int) => {
+  const interviewersArray = interviewers.map((interviewer) => {
     return (
       <InterviewerListItem
-        key={int.id}
-        name={int.name}
-        avatar={int.avatar}
-        selected={int.id === value}
-        setInterviewer={() => onChange(int.id)}
+        key={interviewer.id}
+        name={interviewer.name}
+        avatar={interviewer.avatar}
+        selected={interviewer.id === value}
+        setInterviewer={() => onChange(interviewer.id)}
       />
     );
   });

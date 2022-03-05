@@ -30,13 +30,12 @@ const Form = (props) => {
       return
     }
 
-    //DISREGUARD MY COMMENT WHEN SUBMITTING I GOT THE TEST TO PASS
     if(!interviewer){
       setError("Choose an interviewer")
       return
     }
 
-    // sends the student name entered and interviewer selected up the chain to be saved
+  // sends the student name entered and interviewer selected up the chain to be saved
     setError(null)
     onSave(name,interviewer)
   }

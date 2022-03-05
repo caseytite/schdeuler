@@ -11,12 +11,12 @@ export default function DayListItem(props) {
     'day-list__item--full': !spots,
   });
 
-  //sets the day when clicked
+//sets the day when clicked
   const dayHandler = () => {
     setDay(name);
   };
 
-  //dynamically displays the spots remaining for the day
+//dynamically displays the spots remaining for the day
   const formatSpots=(spots)=>({
       0:<h3 className="text--light">no spots remaining</h3>,
       1:<h3 className="text--light">{spots} spot remaining</h3>,

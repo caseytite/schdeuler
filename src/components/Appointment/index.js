@@ -63,15 +63,15 @@ const Appointment = (props) => {
 
   //cancels an in progress edit, creation or deletion of appointment
   const onCancel = () => {
-   back(EMPTY);
+   back();
   };
 
   
   return (
     <article className="appointment">
       <Header time={time} />
-      {mode === ERROR_SAVE && <Error message={'Error saving to database'} onClose={() => transition(EMPTY)}/>}
-      {mode === ERROR_DELETE && <Error message={'Cannot delete'} onClose={() => transition(CONFIRM, true)}/>}
+      {mode === ERROR_SAVE && <Error message={'Error saving to database'} onClose={() => back()}/>}
+      {mode === ERROR_DELETE && <Error message={'Cannot delete'} onClose={() => transition(SHOW)}/>}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SAVING && <Status message={'Saving'} />}
       {mode === DELETE && <Status message={'Deleting'} />}

@@ -159,13 +159,13 @@ storiesOf('Appointment', module)
       student={"Lydia Miller-Jones"}
       interviewer={interviewer}
       onEdit={action('onEdit')}
-      onDelete={action('onDelete')}
+      onConfirm={action('onConfirm')}
     />
   ))
   .add('Confirm', () => (
     <Confirm 
       message={'Delete the appointment?'}
-      onConfirm={action('onConfirm')}
+      onDelete={action('onDelete')}
       onCancel={action('onCancel')}
     />
   ))
@@ -178,7 +178,7 @@ storiesOf('Appointment', module)
   ))
   .add('Form Edit', () => (
     <Form 
-      student={"Casey"}
+      name={"Casey"}
       interviewer={1}
       interviewers={interviewers}
       onSave={action('onSave')}

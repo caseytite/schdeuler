@@ -26,7 +26,7 @@ export default function Application(props) {
   const appointmentArr = dailyAppointments.map((apt) => {
     if (!apt) {return null;}
 
-    //gets an interview if there is one
+  //gets an interview if there is one
     const interview = getInterview(state, apt.interview);
 
     return (
