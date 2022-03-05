@@ -71,7 +71,7 @@ const Appointment = (props) => {
     <article className="appointment">
       <Header time={time} />
       {mode === ERROR_SAVE && <Error message={'Error saving to database'} onClose={() => transition(EMPTY)}/>}
-      {mode === ERROR_DELETE && <Error message={'Cannot delete'} onClose={() => transition(SHOW)}/>}
+      {mode === ERROR_DELETE && <Error message={'Cannot delete'} onClose={() => transition(CONFIRM, true)}/>}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SAVING && <Status message={'Saving'} />}
       {mode === DELETE && <Status message={'Deleting'} />}
